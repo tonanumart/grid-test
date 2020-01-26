@@ -3,4 +3,6 @@ export interface DataColumn {
   visible: boolean;
   caption : string;
   width : number;
+  cellTemplate : string;
+  cellTemplateCode : string;
 }

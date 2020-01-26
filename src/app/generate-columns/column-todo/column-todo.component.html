@@ -8,6 +8,9 @@
     <div class="col-md-1 text-center" >
         Width
     </div>
+    <div class="col-md-1 text-center" >
+            Cell Template
+    </div>
 </div>
 <div class="row">
     <div class="col-md-1" >
@@ -21,8 +24,12 @@
             (change)="item.caption = $event.target.value" />
     </div>
     <div class="col-md-1" >
-            <input class="form-control form-control-sm" 
+            <input class="form-control form-control-sm text-right" 
                 type="text" [value]="item.width" 
                 (change)="item.width = $event.target.value" />
+    </div>
+    <div class="col-md-1 text-center" >
+        <button class="btn btn-sm btn-primary" [innerText]="item.cellTemplateCode" >
+        </button>
     </div>
 </div>

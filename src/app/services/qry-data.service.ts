@@ -24,7 +24,13 @@ export class QryDataService {
   }
 
   private genColumn(key : string){
-    return { dataField : key , visible : true , caption : '', width : null };
+    return { dataField : key 
+      , visible : true 
+      , caption : ''
+      , width : null
+      , cellTemplate : null
+      , cellTemplateCode : 'N/A'
+     };
   }
 
   public getDataSource(){
