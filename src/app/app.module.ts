@@ -5,16 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { GeneratorElementsComponent } from './generator-elements/generator-elements.component';
 import { DataSelectorComponent } from './data-selector/data-selector.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GeneratorElementsComponent,
-    DataSelectorComponent
+    DataSelectorComponent,
+    TreeSchemaComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

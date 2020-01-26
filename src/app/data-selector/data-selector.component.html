@@ -1,6 +1,9 @@
-<div>
-    Please Select Schema Data 
-    <ul>
-        <li></li>
-    </ul>
+<div class="row">
+    <div class="col-12">
+        Please Select Schema Data 
+    </div>
+    <div class="col-12">
+        <tree-schema *ngIf="tree" [value]="tree"> 
+        </tree-schema>
+    </div>
 </div>

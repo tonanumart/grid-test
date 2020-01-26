@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TreeSchema } from '../models/tree-schema.model';
 
 @Component({
   selector: 'data-selector',
@@ -10,41 +11,41 @@ export class DataSelectorComponent implements OnInit {
 
   @Input('endpoint-data') public endPointData : any;
 
+  public tree : TreeSchema;
+
   constructor() { 
 
   }
 
   ngOnInit() { 
-    let tree = this.findingSchema(this.endPointData);
+    this.tree = this.findingSchema(this.endPointData);
   }
 
-  private findingSchema(object : any , keyName : string = 'object') : TreeSchema{
-    let tree : TreeSchema = { name : keyName , 
-      keys : Object.keys(object),
-      next : [] 
-    };
-    tree.keys.forEach(propName => {
-      let nextObject = object[propName]; 
-      if(Array.isArray(nextObject)){ 
-        let items : any[] = nextObject;
-        if(items.length > 0){
-          tree.next.push(this.findingSchema(nextObject, propName));
-        }
-      }else if(this.isObject(nextObject)){  
-        tree.next.push(this.findingSchema(nextObject, propName));
+  private findingSchema(object : any , keyName : string = 'mainObject') : TreeSchema{
+    if(Array.isArray(object)){ 
+      let items : any[] = object;
+      if(items.length > 0){
+        let item = items[0];
+        return {
+          name : keyName , 
+          keys : Object.keys(item),
+          next : []
+        } 
       }
-    })
-    return tree;
+    }else if(this.isObject(object)){ 
+      let keys = Object.keys(object);
+      let nextObject = keys.filter(key=>this.isObject(object[key]) || Array.isArray(object[key]));
+      return { name : keyName , 
+        keys : keys,
+        next : nextObject.map(key=>{
+          return this.findingSchema(object[key],key)
+        }) 
+      } 
+    }  
   }
 
   private isObject (value) {
     return value && typeof value === 'object' && value.constructor === Object;
   }
-
 }
 
-interface TreeSchema {
-  name : string;
-  keys : string[];
-  next : TreeSchema[];
-}
