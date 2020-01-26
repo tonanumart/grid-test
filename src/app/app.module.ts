@@ -7,13 +7,17 @@ import { GeneratorElementsComponent } from './generator-elements/generator-eleme
 import { DataSelectorComponent } from './data-selector/data-selector.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.component';
+import { GenerateColumnsComponent } from './generate-columns/generate-columns.component';
+import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GeneratorElementsComponent,
     DataSelectorComponent,
-    TreeSchemaComponent
+    TreeSchemaComponent,
+    GenerateColumnsComponent,
+    ColumnTodoComponent
   ],
   imports: [
     BrowserModule,

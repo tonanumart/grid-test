@@ -4,9 +4,11 @@
                         Select {{ item.name }}
         </button>
         <div class="col-12">
-            <ul *ngFor="let key of item.keys" >
-                <li [innerText]="key" ></li>
-            </ul>
+            <div class="limit-height">
+                <ul>
+                    <li *ngFor="let key of item.keys" [innerText]="key" ></li>
+                </ul>
+            </div> 
         </div>  
     </div> 
 </div>

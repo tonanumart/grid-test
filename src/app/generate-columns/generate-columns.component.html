@@ -1,0 +1,6 @@
+<p>generate-columns works!</p>
+<div class="row" *ngIf="dataSource$ | async as listColumn">
+    <div class="col-12" *ngFor="let item of listColumn;let i =index" >
+        <column-todo [item]="item" [row]="i" ></column-todo>
+    </div>
+</div>

@@ -1,13 +1,18 @@
 {
-    "menu": {
-      "id": "file",
-      "value": "File",
-      "popup": {
-        "menuitem": [
-          {"value": "New", "other": "CreateNewDoc()"},
-          {"value": "Open", "other": "OpenDoc()"},
-          {"value": "Close", "other": "CloseDoc()"}
-        ]
-      }
+  "menu": {
+    "id": "file",
+    "value": "File",
+    "test1" : "1",
+    "test2" : "1",
+    "test3" : "1",
+    "test4" : "1",
+    "test5" : "1",
+    "popupData": {
+      "menuitem": [
+        {"value": "New", "other": "CreateNewDoc()" },
+        {"value": "Open", "other": "OpenDoc()"},
+        {"value": "Close", "other": "CloseDoc()"}
+      ]
+    }
   }
 }

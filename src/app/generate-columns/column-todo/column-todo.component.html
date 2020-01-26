@@ -1,0 +1,28 @@
+<div class="row" style="background : #eff0f1" *ngIf="isFirst">
+    <div class="col-md-1 text-center" >
+        Visible
+    </div>
+    <div class="col-md-2 text-center" >
+        Captions
+    </div>
+    <div class="col-md-1 text-center" >
+        Width
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1" >
+        <input [id]="shortid" type="checkbox" 
+            [checked]="item.visible" 
+            (change)="item.visible = !item.visible" />
+        <label class="ml-1" [for]="shortid" [innerText]="item.dataField"></label>
+    </div>
+    <div class="col-md-2" >
+        <input class="form-control form-control-sm" type="text" [value]="item.caption" 
+            (change)="item.caption = $event.target.value" />
+    </div>
+    <div class="col-md-1" >
+            <input class="form-control form-control-sm" 
+                type="text" [value]="item.width" 
+                (change)="item.width = $event.target.value" />
+    </div>
+</div>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TreeSchema } from 'src/app/models/tree-schema.model';
+import { QryDataService } from 'src/app/services/qry-data.service';
 
 @Component({
   selector: 'tree-schema',
@@ -9,6 +10,10 @@ import { TreeSchema } from 'src/app/models/tree-schema.model';
       padding: 0;
       list-style-type: none;
     }
+    div.limit-height {
+      max-height : 100px;
+      overflow-x: auto;
+    }
   `]
 })
 export class TreeSchemaComponent implements OnInit {
@@ -17,7 +22,7 @@ export class TreeSchemaComponent implements OnInit {
 
   public selectList : TreeSchema[];
 
-  constructor() { }
+  constructor(private service : QryDataService) { }
 
   ngOnInit() {
     this.selectList = [];
@@ -32,7 +37,7 @@ export class TreeSchemaComponent implements OnInit {
   }
 
   public select(keys : string[]){
-    
+    this.service.columnChange(keys);
   }
 
 }

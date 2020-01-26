@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TreeSchema } from '../models/tree-schema.model';
 
 @Component({
@@ -10,7 +10,7 @@ export class DataSelectorComponent implements OnInit {
 
 
   @Input('endpoint-data') public endPointData : any;
-
+ 
   public tree : TreeSchema;
 
   constructor() { 
@@ -21,14 +21,16 @@ export class DataSelectorComponent implements OnInit {
     this.tree = this.findingSchema(this.endPointData);
   }
 
-  private findingSchema(object : any , keyName : string = 'mainObject') : TreeSchema{
+  private findingSchema(object : any , keyName : string = 'mainObject') : TreeSchema {
     if(Array.isArray(object)){ 
       let items : any[] = object;
       if(items.length > 0){
         let item = items[0];
+        return this.findingSchema(item,keyName)
+      }else{
         return {
-          name : keyName , 
-          keys : Object.keys(item),
+          name : keyName, 
+          keys : [],
           next : []
         } 
       }
@@ -47,5 +49,6 @@ export class DataSelectorComponent implements OnInit {
   private isObject (value) {
     return value && typeof value === 'object' && value.constructor === Object;
   }
+
 }
 
