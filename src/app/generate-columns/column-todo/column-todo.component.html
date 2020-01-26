@@ -9,7 +9,7 @@
         Width
     </div>
     <div class="col-md-1 text-center" >
-            Cell Template
+        Cell Template
     </div>
 </div>
 <div class="row">
@@ -29,7 +29,9 @@
                 (change)="item.width = $event.target.value" />
     </div>
     <div class="col-md-1 text-center" >
-        <button class="btn btn-sm btn-primary" [innerText]="item.cellTemplateCode" >
+        <button class="btn btn-sm btn-primary" 
+            (click)="editCellTemplate()"
+            [innerText]="item.cellTemplateCode" >
         </button>
     </div>
 </div>

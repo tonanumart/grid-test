@@ -1,6 +1,16 @@
 <p>generate-columns works!</p>
 <div class="row" *ngIf="dataSource$ | async as listColumn">
     <div class="col-12" *ngFor="let item of listColumn;let i =index" >
-        <column-todo [item]="item" [row]="i" ></column-todo>
+        <column-todo [item]="item" [row]="i" 
+            (editCellTemplateClick)="cellTemplateEdit(item,i,content)" ></column-todo>
     </div>
 </div>
+
+<ng-template #content let-modal>
+    <modal-template-form *ngIf="isModal"
+        [item]="copyRowItem"
+        [content]="content" 
+        (onSave)="saveItem($event);modal.close('Close click')"
+        [modal]="modal">
+    </modal-template-form>
+</ng-template>

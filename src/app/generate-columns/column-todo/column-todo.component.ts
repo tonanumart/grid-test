@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataColumn } from 'src/app/models/data-column.model';
 import { generate } from 'shortid';
 
@@ -11,9 +11,11 @@ export class ColumnTodoComponent implements OnInit {
 
   @Input() item : DataColumn;
   @Input() row : number;
+  @Output() editCellTemplateClick : EventEmitter<any> = new EventEmitter();
 
   public shortid : string;
   public isFirst : boolean;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,5 +27,11 @@ export class ColumnTodoComponent implements OnInit {
   private camelToSentence(stringValue : string){
     return stringValue.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
   }
+
+  public editCellTemplate(){
+    this.editCellTemplateClick.emit({});
+  }
+
+  
 
 }

@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Cell Template {{item.dataField}} </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+      <div class="col-12">
+          <label for="type">Template Style </label>
+          <select id="type" class="form-control form-control-sm"
+            (change)="templateChange($event.target.value)"
+            [value]="item.cellTemplateCode" >
+              <option value="N/A">None</option>
+              <option value="Chk">Checkbox </option>
+              <option value="Date">Date </option>
+              <option value="Number">Number </option>
+              <option value="Custom">Custom </option>
+          </select>
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="saveClick()">Save</button>
+  <button type="button" class="btn btn-light ml-1" (click)="modal.close('Close click')">Cancel</button>
+</div>
