@@ -42,7 +42,8 @@ export class GenerateColumnsComponent implements OnInit {
     let cellTemplate = item.cellTemplate;
     let cellTemplateCode = item.cellTemplateCode;
     let  dataField = item.dataField;
-    this.copyRowItem = { cellTemplate , cellTemplateCode , dataField , row };
+    let caption = item.caption;
+    this.copyRowItem = { cellTemplate , cellTemplateCode , dataField , row , caption };
     this.modalService.open(content, { size: 'lg' });
     of({}).pipe(delay(100),finalize(()=>this.isModal = true)).subscribe();
   }

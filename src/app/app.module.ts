@@ -11,9 +11,7 @@ import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.com
 import { GenerateColumnsComponent } from './generate-columns/generate-columns.component';
 import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 import { ModalTemplateFormComponent } from './generate-columns/modal-template-form/modal-template-form.component';
-import { ChkBoxTemplateComponent } from './template/chk-box-template.component';
-import { DateTemplateComponent } from './template/date-template.component';
-import { NumberTemplateComponent } from './template/number-template.component';
+import { GenTemplateModule } from './template/gen-template.module';
 
 @NgModule({
   declarations: [
@@ -24,14 +22,12 @@ import { NumberTemplateComponent } from './template/number-template.component';
     GenerateColumnsComponent,
     ColumnTodoComponent,
     ModalTemplateFormComponent,
-    ChkBoxTemplateComponent,
-    DateTemplateComponent,
-    NumberTemplateComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    GenTemplateModule,
     NgbModule
   ],
   providers: [],

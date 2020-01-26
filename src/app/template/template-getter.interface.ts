@@ -1,4 +1,4 @@
 export interface TemplateGetter {
-    getHtmlContent();
+    getHtmlContent(... params: string[]);
     type : string;
 }

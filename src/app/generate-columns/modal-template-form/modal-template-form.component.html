@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
     <div class="row">
-      <div class="col-12">
+      <div class="col-6">
           <label for="type">Template Style </label>
           <select id="type" class="form-control form-control-sm"
             (change)="templateChange($event.target.value)"
@@ -18,6 +18,16 @@
               <option value="Custom">Custom </option>
           </select>
       </div>
+      <div class="col-6" *ngIf="item.cellTemplateCode == 'Number';else noFormat">
+        <label for="format">Precision</label> 
+        <input type="text" id="format" class="form-control form-control-sm"
+          (change)="item.format = $event.target.value;updateTemplate();"
+          [value]="item.format"  />
+      </div>
+      <ng-template #noFormat>
+        <div class="col-6">No Format</div>
+      </ng-template>
+      
       <div class="col-12">
           <label for="cellTemplate">Template Text</label>
           <textarea id="cellTemplate" 
