@@ -1,0 +1,16 @@
+<div>
+    <label for="urlName">
+            Url End Point : 
+    </label>
+    <input id="urlName" type="text" 
+        [value]="endPoint" 
+        (change)="changeUrl($event.target.value)" >
+    
+    <button class="btn btn-sm btn-primary" (click)="getData()" >
+        Test
+    </button>
+
+    <data-selector *ngIf="endPointComplete" [endpoint-data]="dataEndPoint" >
+    </data-selector>
+
+</div>
