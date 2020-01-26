@@ -22,9 +22,7 @@ export class ModalTemplateFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if(!this.item.format){
-      this.item.format = 2;
-    }
+   
   }
 
   public saveClick(){
@@ -33,16 +31,20 @@ export class ModalTemplateFormComponent implements OnInit {
 
   public templateChange(value){
     this.item.cellTemplateCode = value;
-    this.updateTemplate();
+    this.updateTemplate(true);
   }
 
-  public updateTemplate(){
+  public updateTemplate(isReset : boolean = false){
     let value = this.item.cellTemplateCode;
     if(value == this.chk.type){
-      this.item.cellTemplate = this.chk.getHtmlContent();
+      this.item.cellTemplate = this.chk.getHtmlContent(this.item.caption
+        ,this.item.dataField);
     }else if(value == this.date.type){
-      this.item.cellTemplate = this.date.getHtmlContent();
+      if(isReset) this.item.format = 'dd-MMM-yyyy';
+      this.item.cellTemplate = this.date.getHtmlContent(this.item.caption
+        ,this.item.dataField,this.item.format);
     }else if(value == this.number.type){
+      if(isReset) this.item.format = 2;
       this.item.cellTemplate = this.number.getHtmlContent(this.item.caption
         ,this.item.dataField
         ,this.item.format);

@@ -18,7 +18,7 @@
               <option value="Custom">Custom </option>
           </select>
       </div>
-      <div class="col-6" *ngIf="item.cellTemplateCode == 'Number';else noFormat">
+      <div class="col-6" *ngIf="['Number','Date'].indexOf(item.cellTemplateCode)>= 0;else noFormat">
         <label for="format">Precision</label> 
         <input type="text" id="format" class="form-control form-control-sm"
           (change)="item.format = $event.target.value;updateTemplate();"
