@@ -18,9 +18,22 @@
               <option value="Custom">Custom </option>
           </select>
       </div>
+      <div class="col-12">
+          <label for="cellTemplate">Template Text</label>
+          <textarea id="cellTemplate" 
+            [value]="item.cellTemplate"
+            class="form-control form-control-sm"
+            cols="30" rows="5"> 
+          </textarea>
+      </div>
     </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-success" (click)="saveClick()">Save</button>
   <button type="button" class="btn btn-light ml-1" (click)="modal.close('Close click')">Cancel</button>
+</div>
+<div style="display: none;" >
+  <chk-box-template #chk ></chk-box-template>
+  <date-template #date ></date-template>
+  <number-template #number ></number-template>
 </div>
