@@ -11,7 +11,7 @@ export class QryDataService {
 
 
   private column$ = new BehaviorSubject<DataColumn[]>([]);
-
+  private data$ = new BehaviorSubject<any[]>([]);
   private currentColumnData: DataColumn[];
 
   constructor(private http: HttpClient,
@@ -23,10 +23,15 @@ export class QryDataService {
     return this.http.get(url);
   }
 
-  public columnChange(itemColumn: string[]) {
+  public sampleData(){
+    return this.data$;
+  }
+
+  public columnChange(itemColumn: string[],sampleData : any[]) {
     let columnSchema = itemColumn.slice().map(x => this.genColumn(x));
     this.currentColumnData = columnSchema;
     this.column$.next(columnSchema);
+    this.data$.next(sampleData);
   }
 
   private genColumn(key: string) {

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-2" *ngFor="let item of selectList">
-        <button class="btn btn-sm btn-info " (click)="select(item.keys)"> 
+        <button class="btn btn-sm btn-info " (click)="select(item.keys,item.sampleData)"> 
                         Select {{ item.name }}
         </button>
         <div class="col-12">

@@ -36,8 +36,8 @@ export class TreeSchemaComponent implements OnInit {
     });
   }
 
-  public select(keys : string[]){
-    this.service.columnChange(keys);
+  public select(keys : string[],sampleData : any[]){
+    this.service.columnChange(keys,sampleData);
   }
 
 }

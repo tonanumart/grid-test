@@ -31,7 +31,8 @@ export class DataSelectorComponent implements OnInit {
         return {
           name : keyName, 
           keys : [],
-          next : []
+          next : [],
+          sampleData : [...items]
         } 
       }
     }else if(this.isObject(object)){ 
@@ -41,7 +42,8 @@ export class DataSelectorComponent implements OnInit {
         keys : keys,
         next : nextObject.map(key=>{
           return this.findingSchema(object[key],key)
-        }) 
+        }),
+        sampleData : [object]
       } 
     }  
   }

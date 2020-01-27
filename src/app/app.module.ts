@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
+import { DxDataGridModule } from 'devextreme-angular';
+
 
 import { AppComponent } from './app.component';
 import { GeneratorElementsComponent } from './generator-elements/generator-elements.component';
@@ -16,6 +18,7 @@ import { ModalTemplateFormComponent } from './generate-columns/modal-template-fo
 import { XmlPipe } from './pipes/xml.pipe';
 import { TestGridPreviewComponent } from './generate-columns/test-grid-preview/test-grid-preview.component';
 import { PreviewGridComponent } from './generate-columns/test-grid-preview/preview-grid/preview-grid.component';
+import { HtmlSafePipe } from './pipes/html-safe.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { PreviewGridComponent } from './generate-columns/test-grid-preview/previ
     XmlPipe,
     TestGridPreviewComponent,
     PreviewGridComponent,
+    HtmlSafePipe,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { PreviewGridComponent } from './generate-columns/test-grid-preview/previ
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
+    DxDataGridModule,
     ClipboardModule,
   ],
   providers: [],
