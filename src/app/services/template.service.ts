@@ -34,7 +34,7 @@ export class TemplateService {
     return '';
   }
 
-  public getTemplateByCode(item : DataColumn,isReset : boolean = false){
+  public genTemplateByCode(item : DataColumn,isReset : boolean = false){
     let template = TemplateFactory.findTemplate(item.cellTemplateCode);
     if (template == null) return '';
     if (isReset) {

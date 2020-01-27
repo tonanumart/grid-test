@@ -30,7 +30,7 @@ export class ModalTemplateFormComponent implements OnInit {
   }
 
   public updateTemplate(isReset: boolean = false) {
-    this.item.cellTemplate = this.service.getTemplateByCode(this.item,isReset);
+    this.item.cellTemplate = this.service.genTemplateByCode(this.item,isReset);
   }
 
 }
