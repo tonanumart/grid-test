@@ -4,8 +4,8 @@
     "value": "File",
     "test1" : "1",
     "test2" : "1",
-    "test3" : "1",
-    "test4" : "1",
+    "testDate" : "1",
+    "endtestDateTime" : "1",
     "test5" : "1",
     "popupData": {
       "menuitem": [

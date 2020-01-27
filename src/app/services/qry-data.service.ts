@@ -24,13 +24,26 @@ export class QryDataService {
   }
 
   private genColumn(key : string){
-    return { dataField : key 
-      , visible : true 
-      , caption : ''
-      , width : null
-      , cellTemplate : null
-      , cellTemplateCode : 'N/A'
-     };
+    return new DataColumn(key,true,
+        this.camelToSentence(key),
+        null, 
+        null, 
+        'N/A',
+        this.autoAlign(key.toLowerCase())
+    );
+  }
+
+  private autoAlign(key : string){
+    if(key.endsWith('date') || key.endsWith('datetime'))
+      return 'center';
+    else if(key.indexOf('value') >= 0 || key.indexOf('amount') >= 0)
+      return 'right';
+    return 'left';
+  }
+
+  
+  private camelToSentence(stringValue : string){
+    return stringValue.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
   }
 
   public getDataSource(){

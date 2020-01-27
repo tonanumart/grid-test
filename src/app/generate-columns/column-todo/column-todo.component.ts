@@ -21,12 +21,8 @@ export class ColumnTodoComponent implements OnInit {
   ngOnInit() {
     this.shortid = generate();
     this.isFirst = this.row == 0;
-    this.item.caption = this.camelToSentence(this.item.dataField);
   }
 
-  private camelToSentence(stringValue : string){
-    return stringValue.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
-  }
 
   public editCellTemplate(){
     this.editCellTemplateClick.emit({});

@@ -1,8 +1,13 @@
-export interface DataColumn {
-  dataField: string;
-  visible: boolean;
-  caption : string;
-  width : number;
-  cellTemplate : string;
-  cellTemplateCode : string;
+export class DataColumn {
+
+  constructor(public dataField: string,
+    public visible: boolean,
+    public caption : string,
+    public width : number,
+    public cellTemplate : string,
+    public cellTemplateCode : string,
+    public alignment : string){
+
+  }
+  
 }

@@ -13,7 +13,6 @@ export class NumberTemplateComponent implements OnInit , TemplateGetter {
   private elRef: ElementRef;
   public type : string = 'Number';
 
-
   public precision = 2;
   public fieldName = 'thisIsName';
 
