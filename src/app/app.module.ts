@@ -13,6 +13,7 @@ import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.com
 import { GenerateColumnsComponent } from './generate-columns/generate-columns.component';
 import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 import { ModalTemplateFormComponent } from './generate-columns/modal-template-form/modal-template-form.component';
+import { NoSanitizePipe } from './pipes/no-sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ModalTemplateFormComponent } from './generate-columns/modal-template-fo
     GenerateColumnsComponent,
     ColumnTodoComponent,
     ModalTemplateFormComponent,
+    NoSanitizePipe,
   ],
   imports: [
     BrowserModule,

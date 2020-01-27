@@ -6,8 +6,10 @@ export class CheckBoxTemplate implements TemplateGetter{
 
     public getHtmlContent(...params: string[]) {
         return `<div *dxTemplate="let cellData of 'chkBox'">
+            some checkbox 
         </div>
-        <div *dxTemplate="let cellData of 'hChkbox'">
+        <div *dxTemplate="let cellData of 'headerChkbox'">
+            some checkbox header
         </div>
         `
     } 
