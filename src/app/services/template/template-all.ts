@@ -45,12 +45,26 @@ export class NumberTemplate implements TemplateGetter {
      }
 }
 
+export class CustomTemplate implements TemplateGetter {
+    
+    static type : string = 'Custom'
+
+    public getHtmlContent(...params: string[]) {
+        return ``
+    } 
+
+    public defaultFormat() {
+        return '';
+     }
+}
+
 export class TemplateFactory {
 
     public static findTemplate(code : string) : TemplateGetter {
         if(code == NumberTemplate.type) return new NumberTemplate();
         if(code == DateTemplate.type) return new DateTemplate();
         if(code == CheckBoxTemplate.type) return new CheckBoxTemplate();
+        if(code == CustomTemplate.type) return new CustomTemplate();
         return null;
     }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataColumn } from '../models/data-column.model';
-import { TemplateFactory, CheckBoxTemplate, DateTemplate, NumberTemplate } from './template/template-all';
+import { TemplateFactory, CheckBoxTemplate, DateTemplate, NumberTemplate, CustomTemplate } from './template/template-all';
 import { generate } from 'shortid';
 
 @Injectable({
@@ -29,6 +29,8 @@ export class TemplateService {
       return `cellTemplate="gen-${tag_id}"`;
     } else if (colInfo.cellTemplateCode == NumberTemplate.type) {
       return ``;
+    } else if (colInfo.cellTemplateCode == CustomTemplate.type) {
+      return `cellTemplate="gen-${tag_id}"`;
     }
     return '';
   }
@@ -49,8 +51,9 @@ export class TemplateService {
         return colInfo.cellTemplate;
       }else if(colInfo.cellTemplate.indexOf('dxo-format') >= 0){
         return colInfo.cellTemplate;
+      }else{
+        return `<div *dxTemplate="let cellData of 'gen-${tag_id}'">${colInfo.cellTemplate}</div>`;
       }
-      return `<div *dxTemplate="let data of 'gen-${tag_id}'">${colInfo.cellTemplate}</div>`;
     }
     return '';
   }

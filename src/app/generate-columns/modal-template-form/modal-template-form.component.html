@@ -31,6 +31,7 @@
       <div class="col-12">
           <label for="cellTemplate">Template Text</label>
           <textarea id="cellTemplate" 
+            (change)="item.cellTemplate = $event.target.value"
             [value]="item.cellTemplate"
             class="form-control form-control-sm"
             cols="30" rows="5"> 
