@@ -13,7 +13,6 @@ import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.com
 import { GenerateColumnsComponent } from './generate-columns/generate-columns.component';
 import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 import { ModalTemplateFormComponent } from './generate-columns/modal-template-form/modal-template-form.component';
-import { GenTemplateModule } from './template/gen-template.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { GenTemplateModule } from './template/gen-template.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    GenTemplateModule,
     FormsModule,
     NgbModule
   ],

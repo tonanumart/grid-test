@@ -1,8 +1,14 @@
-<p>generate-columns works!</p>
+<div style="border-top: 1px solid salmon;" class="mt-1" >
+</div>
 <div class="row" *ngIf="dataSource$ | async as listColumn">
     <div class="col-12" *ngFor="let item of listColumn;let i =index" >
         <column-todo [item]="item" [row]="i" 
             (editCellTemplateClick)="cellTemplateEdit(item,i,content)" ></column-todo>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-sm btn-danger" (click)="generateGrid(listColumn)" >
+            Generate
+        </button>    
     </div>
 </div>
 

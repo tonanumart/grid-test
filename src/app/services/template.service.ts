@@ -7,12 +7,11 @@ import { DataColumn } from '../models/data-column.model';
 export class TemplateService {
   constructor() { }
 
-  public getColumnTemplate(colInfo : DataColumn,innerTemplate : string){
-    let template = 
-    `<dxi-column dataField="${colInfo.dataField}" caption="${colInfo.caption}" 
+  public getColumnTemplate(colInfo : DataColumn){
+    let template = `<dxi-column dataField="${colInfo.dataField}" caption="${colInfo.caption}" 
           ${this.getWidthHtml(colInfo)}
           ${this.getAlignHtml(colInfo)} >
-    ${innerTemplate}
+    ${this.findInnerTemplate(colInfo)}
     </dxi-column>
     `;
     return template;
@@ -26,6 +25,17 @@ export class TemplateService {
   public getAlignHtml(colInfo : DataColumn){
     if(!colInfo.alignment) return ''
     return `alignment="${colInfo.alignment}"`
+  }
+
+  public findInnerTemplate(colInfo: DataColumn) {
+    if(colInfo.cellTemplate != null)
+      return colInfo.cellTemplate;
+    return '';
+  }
+
+  public getTemplateByCode(code : string){
+    
+    return ''
   }
   
 }

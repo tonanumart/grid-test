@@ -5,6 +5,7 @@ import { DataColumn } from '../models/data-column.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { delay, finalize } from 'rxjs/operators';
+import { TemplateService } from '../services/template.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { delay, finalize } from 'rxjs/operators';
 export class GenerateColumnsComponent implements OnInit {
 
   constructor(private service : QryDataService,
+            private tService : TemplateService,
             private modalService: NgbModal) { }
 
   public dataSource$ : Observable<DataColumn[]>
@@ -46,6 +48,15 @@ export class GenerateColumnsComponent implements OnInit {
     this.copyRowItem = { cellTemplate , cellTemplateCode , dataField , row , caption };
     this.modalService.open(content, { size: 'lg' });
     of({}).pipe(delay(100),finalize(()=>this.isModal = true)).subscribe();
+  }
+
+
+  public generateGrid(columns : DataColumn[]){
+    columns.forEach(col=>{
+      let html = this.tService.getColumnTemplate(col);
+      console.log(html);
+    })
+    
   }
  
 
