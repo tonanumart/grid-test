@@ -11,14 +11,23 @@ export class TemplateService {
 
   public getColumnTemplate(colInfo: DataColumn) {
     let tag_id = generate();
-    let template = `<dxi-column dataField="${colInfo.dataField}" caption="${colInfo.caption}" 
-          ${this.getCellTemplateId(colInfo, tag_id)}
-          ${this.getWidthHtml(colInfo)}
-          ${this.getAlignHtml(colInfo)} >
-    ${this.findInnerTemplate(colInfo, tag_id)}
-    </dxi-column>
-    `;
-    return template;
+    let attrConcat = [
+      this.getCellTemplateId(colInfo, tag_id),
+      this.getWidthHtml(colInfo),
+      this.getAlignHtml(colInfo)
+    ].join(' ');
+
+    let innerTag = this.findInnerTemplate(colInfo, tag_id);
+    let isEmptyTag = innerTag.replace(' ', '').length == 0;
+    if (isEmptyTag) {
+      return `<dxi-column dataField="${colInfo.dataField}" caption="${colInfo.caption}" ${attrConcat} ></dxi-column>`;
+    } else {
+      let template = `<dxi-column dataField="${colInfo.dataField}" caption="${colInfo.caption}" ${attrConcat} >
+      ${innerTag}
+      </dxi-column>
+      `;
+      return template;
+    }
   }
 
   public getCellTemplateId(colInfo: DataColumn, tag_id: any) {
@@ -49,9 +58,9 @@ export class TemplateService {
     if (colInfo.cellTemplate != null && colInfo.cellTemplate !== '') {
       if (colInfo.cellTemplate.indexOf('*dxTemplate') >= 0) {
         return colInfo.cellTemplate;
-      }else if(colInfo.cellTemplate.indexOf('dxo-format') >= 0){
+      } else if (colInfo.cellTemplate.indexOf('dxo-format') >= 0) {
         return colInfo.cellTemplate;
-      }else{
+      } else {
         return `<div *dxTemplate="let cellData of 'gen-${tag_id}'">${colInfo.cellTemplate}</div>`;
       }
     }

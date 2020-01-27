@@ -60,7 +60,8 @@ export class GenerateColumnsComponent implements OnInit {
       let html = this.tService.getColumnTemplate(col);
       innerHtml = innerHtml + html;
     })
-    this.genHtml = `<dx-data-grid #grid [dataSource]="dataSource">
+    this.genHtml = `
+    <dx-data-grid #grid [dataSource]="dataSource">
       ${innerHtml}
     </dx-data-grid>
     `;
