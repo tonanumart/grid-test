@@ -28,9 +28,12 @@ export class GenerateColumnsComponent implements OnInit {
   public isModal: any;
   public copyRowItem: any;
 
-  public genHtml: string;
+  public sourceCode: SourceCode;
 
   ngOnInit() {
+    this.sourceCode = {
+      genHtml : ''
+    }
     this.dataSource$ = this.service.getDataSource();
     
   }
@@ -60,7 +63,7 @@ export class GenerateColumnsComponent implements OnInit {
       let html = this.tService.getColumnTemplate(col);
       innerHtml = innerHtml + html;
     })
-    this.genHtml = `
+    this.sourceCode.genHtml = `
     <dx-data-grid #grid [dataSource]="dataSource">
       ${innerHtml}
     </dx-data-grid>
@@ -73,3 +76,6 @@ export class GenerateColumnsComponent implements OnInit {
 
 }
 
+interface SourceCode {
+  genHtml : string;
+}

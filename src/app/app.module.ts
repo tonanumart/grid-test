@@ -14,6 +14,8 @@ import { GenerateColumnsComponent } from './generate-columns/generate-columns.co
 import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 import { ModalTemplateFormComponent } from './generate-columns/modal-template-form/modal-template-form.component';
 import { XmlPipe } from './pipes/xml.pipe';
+import { TestGridPreviewComponent } from './generate-columns/test-grid-preview/test-grid-preview.component';
+import { PreviewGridComponent } from './generate-columns/test-grid-preview/preview-grid/preview-grid.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { XmlPipe } from './pipes/xml.pipe';
     ColumnTodoComponent,
     ModalTemplateFormComponent,
     XmlPipe,
+    TestGridPreviewComponent,
+    PreviewGridComponent,
   ],
   imports: [
     BrowserModule,
