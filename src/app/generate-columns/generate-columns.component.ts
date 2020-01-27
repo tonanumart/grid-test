@@ -15,47 +15,48 @@ import { TemplateService } from '../services/template.service';
 })
 export class GenerateColumnsComponent implements OnInit {
 
-  constructor(private service : QryDataService,
-            private tService : TemplateService,
-            private modalService: NgbModal) { }
+  constructor(private service: QryDataService,
+    private tService: TemplateService,
+    private modalService: NgbModal) { }
 
-  public dataSource$ : Observable<DataColumn[]>
+  public dataSource$: Observable<DataColumn[]>
 
-  public columnSchema : any[];
-  public editingItem : DataColumn;
+  public columnSchema: any[];
+  public editingItem: DataColumn;
 
   /* Modal Property */
-  public isModal : any;
-  public copyRowItem : any;
+  public isModal: any;
+  public copyRowItem: any;
 
-  public genHtml : string;
+  public genHtml: string;
 
   ngOnInit() {
     this.dataSource$ = this.service.getDataSource();
+    
   }
 
-  public saveItem(saveData : any){
+  public saveItem(saveData: any) {
     this.editingItem.cellTemplate = saveData.cellTemplate;
     this.editingItem.cellTemplateCode = saveData.cellTemplateCode;
     this.editingItem = null;
   }
 
-  public cellTemplateEdit(item : DataColumn, row , content){
+  public cellTemplateEdit(item: DataColumn, row, content) {
     this.isModal = false;
     this.editingItem = item;
     let cellTemplate = item.cellTemplate;
     let cellTemplateCode = item.cellTemplateCode;
-    let  dataField = item.dataField;
+    let dataField = item.dataField;
     let caption = item.caption;
-    this.copyRowItem = { cellTemplate , cellTemplateCode , dataField , row , caption };
+    this.copyRowItem = { cellTemplate, cellTemplateCode, dataField, row, caption };
     this.modalService.open(content, { size: 'lg' });
-    of({}).pipe(delay(100),finalize(()=>this.isModal = true)).subscribe();
+    of({}).pipe(delay(100), finalize(() => this.isModal = true)).subscribe();
   }
 
 
-  public generateGrid(columns : DataColumn[]){
+  public generateGrid(columns: DataColumn[]) {
     let innerHtml = '';
-    columns.forEach(col=>{
+    columns.forEach(col => {
       let html = this.tService.getColumnTemplate(col);
       innerHtml = innerHtml + html;
     })
@@ -64,7 +65,22 @@ export class GenerateColumnsComponent implements OnInit {
     </dx-data-grid>
     `;
   }
- 
+
+  public cellUpRow(item, row) {
+    this.service.upRow(row);
+  }
+
+  public cellDownRow(item, row) {
+    this.service.downRow(row);
+  }
+
+  public cellRemove(item, row) {
+    this.service.removeIndex(row);
+  }
+
+  public trackItem(index: number, item: DataColumn){
+    return index+item.dataField;
+  }
 
 }
 

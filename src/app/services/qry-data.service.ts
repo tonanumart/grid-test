@@ -9,7 +9,10 @@ import { TemplateService } from './template.service';
 })
 export class QryDataService {
 
+
   private column$ = new BehaviorSubject<DataColumn[]>([]);
+
+  private currentColumnData: DataColumn[];
 
   constructor(private http: HttpClient,
     private tServ: TemplateService) {
@@ -22,6 +25,7 @@ export class QryDataService {
 
   public columnChange(itemColumn: string[]) {
     let columnSchema = itemColumn.slice().map(x => this.genColumn(x));
+    this.currentColumnData = columnSchema;
     this.column$.next(columnSchema);
   }
 
@@ -59,6 +63,25 @@ export class QryDataService {
 
   public getDataSource() {
     return this.column$;
+  }
+
+  public removeIndex(row: number) {
+    this.currentColumnData.splice(row, 1);
+    this.column$.next(this.currentColumnData.slice());
+  }
+
+  public downRow(row: number) {
+    let temp = this.currentColumnData[row];
+    this.currentColumnData[row] = this.currentColumnData[row + 1];
+    this.currentColumnData[row + 1] = temp;
+    this.column$.next(this.currentColumnData.slice());
+  }
+
+  public upRow(row: number) {
+    let temp = this.currentColumnData[row];
+    this.currentColumnData[row] = this.currentColumnData[row - 1];
+    this.currentColumnData[row - 1] = temp;
+    this.column$.next(this.currentColumnData.slice());
   }
 
 }

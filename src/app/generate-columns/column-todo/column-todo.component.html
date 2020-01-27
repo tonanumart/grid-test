@@ -17,6 +17,9 @@
     <div class="col-md-1 text-center">
         Cell Template
     </div>
+    <div class="col-md-2 text-center">
+        Action
+    </div>
 </div>
 <div class="row">
     <div class="col-md-2">
@@ -39,6 +42,17 @@
     <div class="col-md-1 text-center">
         <button class="btn btn-sm btn-primary" (click)="editCellTemplate()" 
             [innerText]="item.cellTemplateCode">
+        </button>
+    </div>
+    <div class="col-md-2 text-left">
+        <button class="btn btn-sm btn-danger" (click)="removeRowClick()" >
+            X
+        </button>
+        <button class="btn btn-sm btn-secondary ml-1" (click)="upRowClick()" [disabled]="isFirst" >
+            Up
+        </button>
+        <button class="btn btn-sm btn-secondary ml-1" (click)="downRowClick()" [disabled]="isLast" >
+            Down
         </button>
     </div>
 </div>
