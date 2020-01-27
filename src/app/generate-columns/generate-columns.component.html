@@ -1,26 +1,27 @@
-<div style="border-top: 1px solid salmon;" class="mt-1" >
+<div style="border-top: 1px solid salmon;" class="mt-1">
 </div>
-<div class="row" *ngIf="dataSource$ | async as listColumn">
-    <div class="col-12" *ngFor="let item of listColumn;let i =index" >
-        <column-todo [item]="item" [row]="i" 
-            (editCellTemplateClick)="cellTemplateEdit(item,i,content)" ></column-todo>
+<div class="row" *ngIf="(dataSource$ | async) as listColumn">
+    <div class="col-12" *ngFor="let item of listColumn;let i=index">
+        <column-todo [item]="item" [row]="i" (editCellTemplateClick)="cellTemplateEdit(item,i,content)">
+        </column-todo>
     </div>
     <div class="col-12">
-        <button class="btn btn-sm btn-danger" (click)="generateGrid(listColumn)" >
+        <button class="btn btn-sm btn-danger" (click)="generateGrid(listColumn)">
             Generate
-        </button>    
+        </button>
+        <button class="btn btn-sm btn-primary ml-1" ngxClipboard [cbContent]="genHtml">
+            Copy
+        </button>
     </div>
     <div class="col-12">
-        <pre [innerText]="genHtml" >
+        <pre>
+            {{ (genHtml || '') | xml }}
         </pre>
     </div>
 </div>
 
 <ng-template #content let-modal>
-    <modal-template-form *ngIf="isModal"
-        [item]="copyRowItem"
-        [content]="content" 
-        (onSave)="saveItem($event);modal.close('Close click')"
-        [modal]="modal">
+    <modal-template-form *ngIf="isModal" [item]="copyRowItem" [content]="content"
+        (onSave)="saveItem($event);modal.close('Close click')" [modal]="modal">
     </modal-template-form>
 </ng-template>

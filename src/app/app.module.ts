@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { GeneratorElementsComponent } from './generator-elements/generator-elements.component';
@@ -13,7 +13,7 @@ import { TreeSchemaComponent } from './data-selector/tree-schema/tree-schema.com
 import { GenerateColumnsComponent } from './generate-columns/generate-columns.component';
 import { ColumnTodoComponent } from './generate-columns/column-todo/column-todo.component';
 import { ModalTemplateFormComponent } from './generate-columns/modal-template-form/modal-template-form.component';
-import { NoSanitizePipe } from './pipes/no-sanitize.pipe';
+import { XmlPipe } from './pipes/xml.pipe';
 
 @NgModule({
   declarations: [
@@ -24,14 +24,15 @@ import { NoSanitizePipe } from './pipes/no-sanitize.pipe';
     GenerateColumnsComponent,
     ColumnTodoComponent,
     ModalTemplateFormComponent,
-    NoSanitizePipe,
+    XmlPipe,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
