@@ -6,7 +6,8 @@ export class DataColumn {
     public width : number,
     public cellTemplate : string,
     public cellTemplateCode : string,
-    public alignment : string){
+    public alignment : string,
+    public format : any){
 
   }
   

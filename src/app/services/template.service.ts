@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataColumn } from '../models/data-column.model';
+import { TemplateFactory } from './template/template-all';
 
 @Injectable({
   providedIn: 'root'
@@ -33,9 +34,13 @@ export class TemplateService {
     return '';
   }
 
-  public getTemplateByCode(code : string){
-    
-    return ''
+  public getTemplateByCode(item : DataColumn,isReset : boolean = false){
+    let template = TemplateFactory.findTemplate(item.cellTemplateCode);
+    if (template == null) return '';
+    if (isReset) {
+      item.format = template.defaultFormat();
+    }
+    return template.getHtmlContent(item.format);
   }
   
 }

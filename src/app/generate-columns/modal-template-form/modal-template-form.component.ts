@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { TemplateGetter } from 'src/app/services/template/template-getter.interface';
-import { TemplateFactory } from 'src/app/services/template/template-all';
+import { TemplateService } from 'src/app/services/template.service';
 
 @Component({
   selector: 'modal-template-form',
@@ -15,7 +14,7 @@ export class ModalTemplateFormComponent implements OnInit {
   @Output() onSave: EventEmitter<any> = new EventEmitter();
 
 
-  constructor() { }
+  constructor(private service : TemplateService) { }
 
   ngOnInit() {
 
@@ -31,13 +30,7 @@ export class ModalTemplateFormComponent implements OnInit {
   }
 
   public updateTemplate(isReset: boolean = false) {
-    let value = this.item.cellTemplateCode;
-    let template = TemplateFactory.findTemplate(value);
-    if (template == null) return '';
-    if (isReset) {
-      this.item.format = template.defaultFormat();
-    }
-    this.item.cellTemplate =  template.getHtmlContent(this.item.format);
+    this.item.cellTemplate = this.service.getTemplateByCode(this.item,isReset);
   }
 
 }
