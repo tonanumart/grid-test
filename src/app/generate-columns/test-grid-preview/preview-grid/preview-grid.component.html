@@ -1,3 +1,9 @@
-<div class="preview" [innerHTML]="template | htmlSafe" >
+<div class="preview">
+    <button class="btn btn-sm btn-primary" (click)="addComponent()" >
+        Refresh
+    </button>
+
+    <div #anchor >
+    </div>
 
 </div>

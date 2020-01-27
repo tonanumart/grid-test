@@ -19,6 +19,7 @@ import { XmlPipe } from './pipes/xml.pipe';
 import { TestGridPreviewComponent } from './generate-columns/test-grid-preview/test-grid-preview.component';
 import { PreviewGridComponent } from './generate-columns/test-grid-preview/preview-grid/preview-grid.component';
 import { HtmlSafePipe } from './pipes/html-safe.pipe';
+import { CustomHtmlComponent } from './generate-columns/test-grid-preview/preview-grid/custom-html/custom-html.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HtmlSafePipe } from './pipes/html-safe.pipe';
     TestGridPreviewComponent,
     PreviewGridComponent,
     HtmlSafePipe,
+    CustomHtmlComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,16 @@ import { HtmlSafePipe } from './pipes/html-safe.pipe';
     DxDataGridModule,
     ClipboardModule,
   ],
+  exports : [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    NgbModule,  
+    DxDataGridModule,
+    ClipboardModule,
+  ],
+  entryComponents: [CustomHtmlComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
