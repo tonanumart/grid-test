@@ -37,7 +37,7 @@ export class TemplateService {
 
   public getWidthHtml(colInfo: DataColumn) {
     if (!colInfo.width) return ''
-    return `[width]=${colInfo.width}`
+    return `[width]="${colInfo.width}"`
   }
 
   public getAlignHtml(colInfo: DataColumn) {
