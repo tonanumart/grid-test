@@ -35,9 +35,9 @@
             (change)="item.width = $event.target.value" />
     </div>
     <div class="col-md-1 text-center">
-        <label> <input type="radio" value="left" [(ngModel)]="item.alignment"></label>
-        <label> <input type="radio" value="center" [(ngModel)]="item.alignment"></label>
-        <label> <input type="radio" value="right" [(ngModel)]="item.alignment"></label>
+        <label> <input type="radio" [name]="'r-'+shortid" value="left" [(ngModel)]="item.alignment"></label>
+        <label> <input type="radio" [name]="'r-'+shortid" value="center" [(ngModel)]="item.alignment"></label>
+        <label> <input type="radio" [name]="'r-'+shortid" value="right" [(ngModel)]="item.alignment"></label>
     </div>
     <div class="col-md-1 text-center">
         <button class="btn btn-sm btn-primary" (click)="editCellTemplate()" 
