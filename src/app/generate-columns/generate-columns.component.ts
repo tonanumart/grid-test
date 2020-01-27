@@ -66,18 +66,6 @@ export class GenerateColumnsComponent implements OnInit {
     `;
   }
 
-  public cellUpRow(item, row) {
-    this.service.upRow(row);
-  }
-
-  public cellDownRow(item, row) {
-    this.service.downRow(row);
-  }
-
-  public cellRemove(item, row) {
-    this.service.removeIndex(row);
-  }
-
   public trackItem(index: number, item: DataColumn){
     return index+item.dataField;
   }
