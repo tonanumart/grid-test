@@ -46,15 +46,9 @@ import { CustomHtmlComponent } from './generate-columns/test-grid-preview/previe
     ClipboardModule,
   ],
   exports : [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    NgbModule,  
     DxDataGridModule,
-    ClipboardModule,
   ],
-  entryComponents: [CustomHtmlComponent],
+  //entryComponents: [CustomHtmlComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

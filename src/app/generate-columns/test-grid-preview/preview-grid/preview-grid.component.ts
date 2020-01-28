@@ -1,15 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, NgModule, Compiler, Injector, NgModuleRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, NgModule, Compiler, Injector, NgModuleRef, OnChanges, SimpleChanges } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
-// import { DxDataGridModule } from 'devextreme-angular';
 
 import { QryDataService } from 'src/app/services/qry-data.service';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-import { CustomHtmlComponent } from './custom-html/custom-html.component';
-
-
-//import { CustomHtmlComponent } from './custom-html/custom-html.component';
+import { CommonModule } from '@angular/common';
+import { DxDataGridModule } from 'devextreme-angular';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'preview-grid',
@@ -17,7 +13,7 @@ import { CustomHtmlComponent } from './custom-html/custom-html.component';
   styles: []
 })
 export class PreviewGridComponent implements OnInit {
-
+ 
   @Input() sourceCode: { genHtml: string };
 
   @ViewChild("anchor", { static: true, read: ViewContainerRef })
@@ -26,7 +22,6 @@ export class PreviewGridComponent implements OnInit {
   public dataSource: DataSource;
 
   constructor(public service: QryDataService,
-    private componentFactoryResolver : ComponentFactoryResolver,
     private compiler: Compiler,
     private injector: Injector,
     private moduleAngular: NgModuleRef<any>) {
@@ -42,32 +37,51 @@ export class PreviewGridComponent implements OnInit {
         })
       })
     })
+    
+    let register : any  = this.sourceCode;
+    register.notify = (e)=>{
+      this.addComponent();
+    }
+
   }
 
   public addComponent() {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(CustomHtmlComponent);
-    const cmpRef = this.injectComp.createComponent(componentFactory);
-    cmpRef.instance.dataSource = this.dataSource;
+    //const componentFactory = this.componentFactoryResolver.resolveComponentFactory(CustomHtmlComponent);
+    //const cmpRef = this.injectComp.createComponent(componentFactory);
+    //cmpRef.instance.dataSource = this.dataSource;
 
-    //   const template = this.sourceCode.genHtml;
-    //   const tmpCmp = Component({ template: template })(class { });
-    //   const tmpModule = NgModule({
-    //     declarations: [tmpCmp],
-    //     imports: [
-    //       CommonModule,
-    //       FormsModule,
-    //       DxDataGridModule,
-    //       DataSource,
-    //       ArrayStore
-    //     ]
-    //   })(class { });
-    //   this.compiler.compileModuleAndAllComponentsAsync(tmpModule)
-    //     .then((factories) => {
-    //       const f = factories.componentFactories[0];
-    //       const cmpRef = f.create(this.injector, [], null, this.moduleAngular);
-    //       cmpRef.instance.dataSource = this.dataSource;
-    //       this.injectComp.insert(cmpRef.hostView);
-    //     })
+    const template = this.sourceCode.genHtml;
+    const tmpCmp = Component({ template: template })(class {});
+    const tmpModule = NgModule({
+      declarations: [tmpCmp],
+      imports: [
+        CommonModule,
+        DxDataGridModule,
+      ]
+    })(class { });
+    this.compiler.compileModuleAndAllComponentsAsync(tmpModule)
+      .then((factories) => {
+        const f = factories.componentFactories.filter(x=>{
+          return x.selector === 'ng-component';
+        });
+        const cmpRef = f[0].create(this.injector, [], null, this.moduleAngular);
+        cmpRef.instance.dataSource = this.dataSource;
+        this.injectComp.remove(0);
+        this.injectComp.insert(cmpRef.hostView);
+      })
   }
 
 }
+
+
+// class PrivateCustomComponent {
+//   constructor() {
+//     dxDataGrid.defaultOptions({  
+//       options: {  
+//         editing : {  
+//           allowUpdating: false  
+//         }  
+//       }  
+//     })
+//   }
+// }

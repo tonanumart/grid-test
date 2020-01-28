@@ -32,7 +32,8 @@ export class GenerateColumnsComponent implements OnInit {
 
   ngOnInit() {
     this.sourceCode = {
-      genHtml : ''
+      genHtml : '',
+      notify : (e)=>{ }
     }
     this.dataSource$ = this.service.getDataSource();
     
@@ -68,6 +69,7 @@ export class GenerateColumnsComponent implements OnInit {
       ${innerHtml}
     </dx-data-grid>
     `;
+    this.sourceCode.notify(this.sourceCode.genHtml);
   }
 
   public trackItem(index: number, item: DataColumn){
@@ -78,4 +80,5 @@ export class GenerateColumnsComponent implements OnInit {
 
 interface SourceCode {
   genHtml : string;
+  notify(newString : string);
 }

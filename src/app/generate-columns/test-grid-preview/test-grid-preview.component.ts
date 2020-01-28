@@ -9,7 +9,7 @@ export class TestGridPreviewComponent implements OnInit {
 
   @Input() sourceCode: { genHtml: string };
 
-  public page : string = 'code';
+  public page : 'preview'|'code' = 'preview';
 
   constructor() { }
 
