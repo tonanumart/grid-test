@@ -26,13 +26,15 @@ export class DataSelectorComponent implements OnInit {
       let items : any[] = object;
       if(items.length > 0){
         let item = items[0];
-        return this.findingSchema(item,keyName)
+        let schema = this.findingSchema(item,keyName);
+        schema.sampleData = items;
+        return schema;
       }else{
         return {
           name : keyName, 
           keys : [],
           next : [],
-          sampleData : [...items]
+          sampleData : []
         } 
       }
     }else if(this.isObject(object)){ 
