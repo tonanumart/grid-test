@@ -14,7 +14,8 @@ export class TemplateService {
     let attrConcat = [
       this.getCellTemplateId(colInfo, tag_id),
       this.getWidthHtml(colInfo),
-      this.getAlignHtml(colInfo)
+      this.getAlignHtml(colInfo),
+      this.getVisible(colInfo)
     ].join(' ');
 
     let innerTag = this.findInnerTemplate(colInfo, tag_id);
@@ -42,6 +43,11 @@ export class TemplateService {
       return `cellTemplate="gen-${tag_id}"`;
     }
     return '';
+  }
+
+  public getVisible(colInfo : DataColumn){
+    if(colInfo.visible == null || colInfo.visible == true) return ''
+    return `[visible]="${colInfo.visible}"`
   }
 
   public getWidthHtml(colInfo: DataColumn) {

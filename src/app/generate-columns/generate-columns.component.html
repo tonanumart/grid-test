@@ -1,6 +1,11 @@
-<div style="border-top: 1px solid salmon;" class="mt-1">
+<div style="border-top: 1px solid gainsboro;" class="mt-1">
 </div>
 <div class="row" *ngIf="(dataSource$ | async) as listColumn;">
+    <div class="col-12 text-right mt-1 mb-2" *ngIf="listColumn.length > 0" >
+        <button class="btn btn-sm btn-info" (click)="addNewColumn()">
+            + Column
+        </button>
+    </div>
     <div class="col-12" *ngFor="let item of listColumn;trackBy: trackItem;let i=index;">
         <column-todo [item]="item" [row]="i" [total]="listColumn.length"
             (editCellTemplateClick)="cellTemplateEdit(item,i,content)">

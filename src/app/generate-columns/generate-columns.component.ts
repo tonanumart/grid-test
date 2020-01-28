@@ -35,8 +35,11 @@ export class GenerateColumnsComponent implements OnInit {
       genHtml : '',
       notify : (e)=>{ }
     }
-    this.dataSource$ = this.service.getDataSource();
-    
+    this.dataSource$ = this.service.getDataSource(); 
+  }
+
+  public addNewColumn(){
+    this.service.addNewColumn();
   }
 
   public saveItem(saveData: any) {

@@ -8,6 +8,7 @@ import { TemplateService } from './template.service';
   providedIn: 'root'
 })
 export class QryDataService {
+  
 
 
   private column$ = new BehaviorSubject<DataColumn[]>([]);
@@ -63,11 +64,21 @@ export class QryDataService {
   }
 
   private camelToSentence(stringValue: string) {
-    return stringValue.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
+    let first = stringValue[0];
+    let replace = stringValue.replace(/([A-Z]+)/g, " $1");
+    replace = replace.replace(/([A-Z][a-z])/g, " $1");
+    return first.toUpperCase() + replace.substring(1);
   }
 
   public getDataSource() {
     return this.column$;
+  }
+
+  addNewColumn() {
+    this.currentColumnData.push(new DataColumn(
+      '',true,
+      '',null,null,'N/A','center',null
+    ));
   }
 
   public removeIndex(row: number) {
